@@ -1,0 +1,167 @@
+(kicad_sch (version 20230121) (generator eeschema)
+
+  (uuid 36804e49-266f-4323-9d1a-a2cb3256aa72)
+
+  (paper "A4")
+
+  (lib_symbols
+  )
+
+
+  (sheet (at 30.48 27.94) (size 36.83 27.94) (fields_autoplaced)
+    (stroke (width 0) (type solid))
+    (fill (color 0 0 0 0.0000))
+    (uuid 00000000-0000-0000-0000-000064d2a871)
+    (property "Sheetname" "Kicks" (at 30.48 27.2284 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "Kicks.kicad_sch" (at 30.48 56.4646 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "ESP808"
+        (path "/36804e49-266f-4323-9d1a-a2cb3256aa72" (page "2"))
+      )
+    )
+  )
+
+  (sheet (at 30.48 62.23) (size 35.56 25.4) (fields_autoplaced)
+    (stroke (width 0) (type solid))
+    (fill (color 0 0 0 0.0000))
+    (uuid 00000000-0000-0000-0000-000064d2a8ce)
+    (property "Sheetname" "Snare" (at 30.48 61.5184 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "Snare.kicad_sch" (at 30.48 88.2146 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "ESP808"
+        (path "/36804e49-266f-4323-9d1a-a2cb3256aa72" (page "3"))
+      )
+    )
+  )
+
+  (sheet (at 30.48 93.98) (size 35.56 25.4) (fields_autoplaced)
+    (stroke (width 0) (type solid))
+    (fill (color 0 0 0 0.0000))
+    (uuid 00000000-0000-0000-0000-000064d2aa96)
+    (property "Sheetname" "HiHat" (at 30.48 93.2684 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "HiHat.kicad_sch" (at 30.48 119.9646 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "ESP808"
+        (path "/36804e49-266f-4323-9d1a-a2cb3256aa72" (page "4"))
+      )
+    )
+  )
+
+  (sheet (at 30.48 125.73) (size 35.56 25.4) (fields_autoplaced)
+    (stroke (width 0) (type solid))
+    (fill (color 0 0 0 0.0000))
+    (uuid 00000000-0000-0000-0000-000064d2ab61)
+    (property "Sheetname" "Clave" (at 30.48 125.0184 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "Clave.kicad_sch" (at 30.48 151.7146 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "ESP808"
+        (path "/36804e49-266f-4323-9d1a-a2cb3256aa72" (page "5"))
+      )
+    )
+  )
+
+  (sheet (at 30.48 160.02) (size 35.56 22.86) (fields_autoplaced)
+    (stroke (width 0) (type solid))
+    (fill (color 0 0 0 0.0000))
+    (uuid 00000000-0000-0000-0000-000064d2ac86)
+    (property "Sheetname" "Clap" (at 30.48 159.3084 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "Clap.kicad_sch" (at 30.48 183.4646 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "ESP808"
+        (path "/36804e49-266f-4323-9d1a-a2cb3256aa72" (page "6"))
+      )
+    )
+  )
+
+  (sheet (at 76.2 62.23) (size 40.64 25.4) (fields_autoplaced)
+    (stroke (width 0) (type solid))
+    (fill (color 0 0 0 0.0000))
+    (uuid 00000000-0000-0000-0000-000064ea0641)
+    (property "Sheetname" "Digital" (at 76.2 61.5184 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "Digital.kicad_sch" (at 76.2 88.2146 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "ESP808"
+        (path "/36804e49-266f-4323-9d1a-a2cb3256aa72" (page "8"))
+      )
+    )
+  )
+
+  (sheet (at 76.2 27.94) (size 40.64 27.94) (fields_autoplaced)
+    (stroke (width 0) (type solid))
+    (fill (color 0 0 0 0.0000))
+    (uuid 00000000-0000-0000-0000-000064f07efb)
+    (property "Sheetname" "Noise" (at 76.2 27.2284 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "Noise.kicad_sch" (at 76.2 56.4646 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "ESP808"
+        (path "/36804e49-266f-4323-9d1a-a2cb3256aa72" (page "7"))
+      )
+    )
+  )
+
+  (sheet (at 77.47 125.73) (size 40.64 25.4) (fields_autoplaced)
+    (stroke (width 0) (type solid))
+    (fill (color 0 0 0 0.0000))
+    (uuid 00000000-0000-0000-0000-0000650ea811)
+    (property "Sheetname" "Output" (at 77.47 125.0184 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "Output.kicad_sch" (at 77.47 151.7146 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "ESP808"
+        (path "/36804e49-266f-4323-9d1a-a2cb3256aa72" (page "9"))
+      )
+    )
+  )
+
+  (sheet (at 76.2 93.98) (size 41.91 24.13) (fields_autoplaced)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0000))
+    (uuid 5bed3fcc-7910-4ecf-96de-3b9704d6e0d8)
+    (property "Sheetname" "Mixer" (at 76.2 93.2684 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "Mixer.kicad_sch" (at 76.2 118.6946 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "ESP808"
+        (path "/36804e49-266f-4323-9d1a-a2cb3256aa72" (page "10"))
+      )
+    )
+  )
+
+  (sheet_instances
+    (path "/" (page "1"))
+  )
+)

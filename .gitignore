@@ -3,3 +3,6 @@
 .vscode/c_cpp_properties.json
 .vscode/launch.json
 .vscode/ipch
+Schematic/ESP808-backups
+Schematic/gerber
+Schematic/oldBoards
