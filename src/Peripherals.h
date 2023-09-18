@@ -19,6 +19,14 @@ class Peripherals
             potLevels[index] = level;
         }
         void updatePots();
+        void updateTriggers(byte data);
+        
+        //setters for the three segments of LEDS
+        void setKeypadPixel(size_t idx, HsbColor color);
+        void setInstPixel(size_t idx, HsbColor color);
+        void setPagePixel(size_t idx, HsbColor color);
+
+        void updatePixels();
     private:
         I2CDisplay d1;
         I2CDisplay d2;

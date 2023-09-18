@@ -14,6 +14,13 @@ pixels(28, PIXEL_DATA)
 
     pixels.Begin();
     pixels.Show();
+
+    // set up pin modes for the output trigger shift register
+    pinMode(TRIG_CLK, OUTPUT);
+    pinMode(TRIG_DATA, OUTPUT);
+    pinMode(TRIG_LATCH, OUTPUT);
+
+    digitalWrite(TRIG_LATCH, HIGH);
 }
 
 Peripherals::~Peripherals()
@@ -36,4 +43,50 @@ void Peripherals::updatePots()
     }
     // put the chip select back
     digitalWrite(POT_CS, HIGH);
+}
+
+
+void Peripherals::updateTriggers(byte data)
+{
+    //pull the data latch low
+    digitalWrite(TRIG_LATCH, LOW);
+
+    digitalWrite(TRIG_DATA, LOW);
+    digitalWrite(TRIG_CLK, LOW);
+
+    for(int i = 7; i <= 0; i--)
+    {
+        digitalWrite(TRIG_CLK, LOW);
+        if(data & (1<<i))
+        {
+            digitalWrite(TRIG_DATA, HIGH);
+        }
+        else
+        {
+            digitalWrite(TRIG_DATA, LOW);
+        }
+        digitalWrite(TRIG_CLK, HIGH);
+        digitalWrite(TRIG_DATA, LOW);
+    }
+    digitalWrite(TRIG_CLK, LOW);
+    digitalWrite(TRIG_LATCH, HIGH);
+}
+
+
+void Peripherals::setKeypadPixel(size_t idx, HsbColor color)
+{
+    pixels.SetPixelColor(idx, color);
+}
+void Peripherals::setInstPixel(size_t idx, HsbColor color)
+{
+    pixels.SetPixelColor(idx + 16, color);
+}
+void Peripherals::setPagePixel(size_t idx, HsbColor color)
+{
+    pixels.SetPixelColor(idx + 20, color);
+}
+
+void Peripherals::updatePixels()
+{
+    pixels.Show();
 }
