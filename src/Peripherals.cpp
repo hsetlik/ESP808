@@ -46,33 +46,6 @@ void Peripherals::updatePots()
 }
 
 
-void Peripherals::updateTriggers(byte data)
-{
-    //pull the data latch low
-    digitalWrite(TRIG_LATCH, LOW);
-
-    digitalWrite(TRIG_DATA, LOW);
-    digitalWrite(TRIG_CLK, LOW);
-
-    for(int i = 7; i <= 0; i--)
-    {
-        digitalWrite(TRIG_CLK, LOW);
-        if(data & (1<<i))
-        {
-            digitalWrite(TRIG_DATA, HIGH);
-        }
-        else
-        {
-            digitalWrite(TRIG_DATA, LOW);
-        }
-        digitalWrite(TRIG_CLK, HIGH);
-        digitalWrite(TRIG_DATA, LOW);
-    }
-    digitalWrite(TRIG_CLK, LOW);
-    digitalWrite(TRIG_LATCH, HIGH);
-}
-
-
 void Peripherals::setKeypadPixel(size_t idx, HsbColor color)
 {
     pixels.SetPixelColor(idx, color);

@@ -19,7 +19,6 @@ class Peripherals
             potLevels[index] = level;
         }
         void updatePots();
-        void updateTriggers(byte data);
         
         //setters for the three segments of LEDS
         void setKeypadPixel(size_t idx, HsbColor color);

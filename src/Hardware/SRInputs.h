@@ -2,7 +2,7 @@
 #include "../PinAssignments.h"
 #include <array>
 #include <Arduino.h>
-
+#include <functional>
 // a wrapper around a 32 bit unsigned long to store the state of the 4 shift registers
 struct SRState
 {
@@ -47,4 +47,49 @@ public:
     {
         return buf[(head + idx) % cap];
     }
+};
+
+// for regstering and managing individual buttons/encoders
+typedef std::function<void()> ButtonCallback;
+typedef std::function<void(bool)> EncoderCallback;
+
+// just define maxes to avoid using a vector
+#define MAX_BUTTONS 32
+#define MAX_ENCODERS 16
+
+
+// this should do the heavy lifting
+class SRInputs
+{
+private:
+    struct ButtonData
+    {
+        std::string id;
+        byte bitIndex;
+        ButtonCallback onClick;
+    };
+    struct EncoderData
+    {
+        std::string id;
+        byte lBitIndex;
+        byte rBitIndex;
+        EncoderCallback onChange;
+    };
+public:
+    SRInputs();
+    /**
+     * @brief 
+     * this shifts in new values and runs callbacks as needed
+     */
+    void tick();
+    void addButton(const std::string& name, byte index, ButtonCallback callback);
+    void addEncoder(const std::string& name, byte lIndex, byte rIndex, EncoderCallback callback);
+
+private:
+    SRRingBuffer buf;
+    //store registered encoders/buttons here
+    byte numButtons;
+    byte numEncoders;
+    std::array<ButtonData, MAX_BUTTONS> buttons;
+    std::array<EncoderData, MAX_ENCODERS> encoders; 
 };
