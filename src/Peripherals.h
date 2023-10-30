@@ -9,6 +9,10 @@
 
 using I2CDisplay = U8G2_SSD1306_128X64_NONAME_1_SW_I2C;
 
+#define D1_ADDR 0x78
+#define D2_ADDR 0x7F
+
+
 class Peripherals
 {
     public:

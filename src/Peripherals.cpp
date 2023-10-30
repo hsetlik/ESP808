@@ -21,6 +21,12 @@ pixels(28, PIXEL_DATA)
     pinMode(TRIG_LATCH, OUTPUT);
 
     digitalWrite(TRIG_LATCH, HIGH);
+    //initialize the two displays
+    d1.setI2CAddress(D1_ADDR);
+    d1.begin();
+
+    d2.setI2CAddress(D2_ADDR);
+    d2.begin();
 }
 
 Peripherals::~Peripherals()

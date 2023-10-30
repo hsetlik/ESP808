@@ -7,3 +7,4 @@ Schematic/ESP808-backups
 Schematic/gerber
 Schematic/oldBoards
 test
+src/WifiCreds.h
