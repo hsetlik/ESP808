@@ -1,8 +1,8 @@
 #include "Peripherals.h"
 
 Peripherals::Peripherals() :
-d1(U8G2_R0, SCL_PIN, SDA_PIN),
-d2(U8G2_R0, SCL_PIN, SDA_PIN),
+sequenceDisplay(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET),
+trackDisplay(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET),
 pixels(28, PIXEL_DATA)
 {
     spi.begin(SCK_PIN, MISO_PIN, MOSI_PIN, POT_CS);
@@ -21,12 +21,19 @@ pixels(28, PIXEL_DATA)
     pinMode(TRIG_LATCH, OUTPUT);
 
     digitalWrite(TRIG_LATCH, HIGH);
-    //initialize the two displays
-    d1.setI2CAddress(D1_ADDR);
-    d1.begin();
 
-    d2.setI2CAddress(D2_ADDR);
-    d2.begin();
+    //initialize the two displays
+    if(!sequenceDisplay.begin(SSD1306_SWITCHCAPVCC, D1_ADDR)) 
+    {
+        Serial.println("Couldn't initialize sequence display!");
+    }
+    if(!trackDisplay.begin(SSD1306_SWITCHCAPVCC, D2_ADDR)) 
+    {
+        Serial.println("Couldn't initialize track display!");
+    }
+    sequenceDisplay.display();
+    trackDisplay.display();
+
 }
 
 Peripherals::~Peripherals()
@@ -68,4 +75,10 @@ void Peripherals::setPagePixel(size_t idx, HsbColor color)
 void Peripherals::updatePixels()
 {
     pixels.Show();
+}
+
+void Peripherals::setAddress(const char* addr)
+{
+    deviceIP = "IP: " + (String)addr;
+
 }

@@ -15,11 +15,22 @@
 #define SDA_PIN 13
 #define SCL_PIN 14
 
-// pins for the control input 74HC165 shift registers
-#define SR_DATA 4
-#define SR_LOAD 5
-#define SR_CLK 6
+// to control the tri-sate shift registers over SPI
+#define SR_LOAD 6
 #define SR_CE 7
+
+// encoder pins
+#define ENCA_L 15
+#define ENCA_R 16
+
+#define ENCB_L 39
+#define ENCB_R 40
+
+#define ENCC_L 41
+#define ENCC_R 42
+
+#define ENCD_L 47
+#define ENCD_R 48
 
 // pins for the trigger signal output 74HC595 shift register
 #define TRIG_DATA 8
@@ -30,6 +41,7 @@
 #define I2S_DATA 21
 #define I2S_CLK 35
 #define I2S_LRC 36
+#define I2S_BCK 5
 
 // neo pixels
 #define PIXEL_DATA 17
