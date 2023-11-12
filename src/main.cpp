@@ -19,11 +19,13 @@ tasks needed:
 Peripherals* p = nullptr;
 void setup() 
 {
-  //set the I2C pins before we initialize the displays
-  Wire.begin(SDA_PIN, SCL_PIN);
+
+  Wire.setPins(SDA_PIN, SCL_PIN);
+  Wire.begin();
   // set up WiFi for OTA updates
   Serial.begin(115200);
   Serial.println("Booting");
+
   WiFi.mode(WIFI_STA);
   WiFi.begin(SSID, WIFI_PASSWORD);
   while (WiFi.waitForConnectResult() != WL_CONNECTED) {
@@ -60,11 +62,17 @@ void setup()
     });
 
   ArduinoOTA.begin();
+  Serial.println("WiFi connection successful");
   Serial.println(WiFi.localIP());
 
-  // init the hardware
   p = new Peripherals();
+  Serial.println("Initialized peripherals");
+  // init the hardware
   p->setAddress(WiFi.localIP().toString().c_str());
+
+  Serial.println("Set Local IP address");
+
+  //I2CScan();
 }
 
 void loop() 

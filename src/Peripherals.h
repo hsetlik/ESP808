@@ -12,8 +12,8 @@
 #define SCREEN_HEIGHT 64 // OLED display height
 #define OLED_RESET -1
 
-#define D1_ADDR 0x78
-#define D2_ADDR 0x7A
+#define D1_ADDR 0x3C
+#define D2_ADDR 0x3D
 
 class Peripherals
 {
@@ -34,9 +34,9 @@ class Peripherals
         void updatePixels();
         // set the ESP32's current IP for uploading OTA
         void setAddress(const char* addr);
+        void updateDisplays();
     private:
 
-        // we have to manage these old school i think bc we need to pass the Wire instance initialized on the right pins?
         Adafruit_SSD1306 sequenceDisplay;
         Adafruit_SSD1306 trackDisplay;
 
