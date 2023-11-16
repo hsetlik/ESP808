@@ -19,7 +19,6 @@ tasks needed:
 Peripherals* p = nullptr;
 void setup() 
 {
-
   Wire.setPins(SDA_PIN, SCL_PIN);
   Wire.begin();
   // set up WiFi for OTA updates

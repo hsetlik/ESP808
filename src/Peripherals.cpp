@@ -1,39 +1,26 @@
 #include "Peripherals.h"
 
 Peripherals::Peripherals() :
-sequenceDisplay(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET),
-trackDisplay(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET),
+sequenceDisplay(D1_ADDR),
+trackDisplay(D2_ADDR),
 pixels(28, PIXEL_DATA)
 {
-    //spi.begin(SCK_PIN, MISO_PIN, MOSI_PIN, POT_CS);
+    spi.begin(SCK_PIN, MISO_PIN, MOSI_PIN, POT_CS);
     for(auto& val : potLevels)
     {
         val = 255;
     }
-    // updatePots();
+    updatePots();
 
     pixels.Begin();
     pixels.Show();
 
     // set up pin modes for the output trigger shift register
-    // pinMode(TRIG_CLK, OUTPUT);
-    // pinMode(TRIG_DATA, OUTPUT);
-    // pinMode(TRIG_LATCH, OUTPUT);
+    pinMode(TRIG_CLK, OUTPUT);
+    pinMode(TRIG_DATA, OUTPUT);
+    pinMode(TRIG_LATCH, OUTPUT);
 
-    // digitalWrite(TRIG_LATCH, HIGH);
-
-    //initialize the two displays
-    if(!sequenceDisplay.begin(SSD1306_SWITCHCAPVCC, D1_ADDR, false, false)) 
-    {
-        Serial.println("Couldn't initialize sequence display!");
-    }
-    if(!trackDisplay.begin(SSD1306_SWITCHCAPVCC, D2_ADDR, false, false)) 
-    {
-        Serial.println("Couldn't initialize track display!");
-    }
-    sequenceDisplay.display();
-    trackDisplay.display();
-
+    digitalWrite(TRIG_LATCH, HIGH);
 }
 
 Peripherals::~Peripherals()
@@ -81,19 +68,11 @@ void Peripherals::setAddress(const char* addr)
 {
     deviceIP = "IP: " + (String)addr;
     Serial.println(deviceIP);
-    sequenceDisplay.clearDisplay();
-    sequenceDisplay.setCursor(5, 5);
-
-    sequenceDisplay.setTextSize(1);
-    sequenceDisplay.setTextColor(SSD1306_WHITE);
-    sequenceDisplay.println(deviceIP);
-    sequenceDisplay.display();
-   // delay(2000);
-
+    sequenceDisplay.pushMessage(deviceIP);
 }
 
 void Peripherals::updateDisplays()
 {
-    sequenceDisplay.display();
-    trackDisplay.display();
+    sequenceDisplay.update();
+    trackDisplay.update();
 }

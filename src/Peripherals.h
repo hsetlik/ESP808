@@ -6,6 +6,7 @@
 #include <array>
 #include <NeoPixelBus.h>
 #include <Adafruit_SSD1306.h>
+#include "Hardware/Display.h"
 
 
 #define SCREEN_WIDTH 128 // OLED display width
@@ -37,8 +38,8 @@ class Peripherals
         void updateDisplays();
     private:
 
-        Adafruit_SSD1306 sequenceDisplay;
-        Adafruit_SSD1306 trackDisplay;
+        Display sequenceDisplay;
+        Display trackDisplay;
 
         NeoPixelBus<NeoGrbFeature, NeoWs2812xMethod> pixels;
         SPIClass spi;

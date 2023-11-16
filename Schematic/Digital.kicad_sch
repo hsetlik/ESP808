@@ -1146,6 +1146,7 @@
     (uuid 9e7111d3-4e43-4813-a521-f1b231503316)
   )
 
+  (no_connect (at 165.1 73.66) (uuid 1cf9787b-fcc3-4479-92fd-d3b318622130))
   (no_connect (at 215.9 83.82) (uuid 3378e939-816e-4e31-a578-6839a8f339af))
   (no_connect (at 215.9 76.2) (uuid 518daf6e-4e12-4272-8cfb-d0262dcb35dc))
   (no_connect (at 215.9 73.66) (uuid 5261aa69-c5f4-47a0-92dc-48d83c9c1d8b))
@@ -1912,10 +1913,6 @@
   (wire (pts (xy 215.9 96.52) (xy 223.52 96.52))
     (stroke (width 0) (type default))
     (uuid d4c1a0ca-081a-4942-b8b5-ff9256e674e6)
-  )
-  (wire (pts (xy 165.1 66.04) (xy 165.1 73.66))
-    (stroke (width 0) (type default))
-    (uuid d5373285-8d85-48fb-8da1-230c91474f18)
   )
   (wire (pts (xy 314.96 82.55) (xy 323.85 82.55))
     (stroke (width 0) (type default))
@@ -4145,31 +4142,6 @@
       (project "ESP808"
         (path "/36804e49-266f-4323-9d1a-a2cb3256aa72/00000000-0000-0000-0000-000064ea0641"
           (reference "#PWR0854") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "power:+3.3V") (at 165.1 66.04 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
-    (uuid 934ccdaf-a1b9-4ecf-878b-63a7ccdd42f3)
-    (property "Reference" "#PWR0804" (at 165.1 69.85 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Value" "+3.3V" (at 165.1 61.9069 0)
-      (effects (font (size 1.27 1.27)))
-    )
-    (property "Footprint" "" (at 165.1 66.04 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (at 165.1 66.04 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid 69cd0ad8-424d-4f73-8aa2-ea635dc1b032))
-    (instances
-      (project "ESP808"
-        (path "/36804e49-266f-4323-9d1a-a2cb3256aa72/00000000-0000-0000-0000-000064ea0641"
-          (reference "#PWR0804") (unit 1)
         )
       )
     )
