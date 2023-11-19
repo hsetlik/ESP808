@@ -31,7 +31,7 @@ public:
         disp.display();
     }
     //add a message to the next unused line (if there are unused lines)
-    void pushMessage(String& txt, bool highlight=false);
+    void pushMessage(const String& txt, bool highlight=false);
     //add a message at a specific line
     void setMessage(uint8_t idx, String& txt, bool highlight=false);
 private:

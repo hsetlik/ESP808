@@ -2,6 +2,8 @@
 #define PIN_ASSIGN
 #pragma once
 #include <Arduino.h>
+
+#define SPI_CLK 1000000
 // The pin numbers on the ESP32-S3 dev board
 
 // shared SPI pins (for the digital pots and card reader)

@@ -1,5 +1,5 @@
 #include <TaskScheduler.h>
-#include "Peripherals.h"
+#include "Processor.h"
 
 #include <WiFi.h>
 #include <ESPmDNS.h>
@@ -15,8 +15,34 @@ tasks needed:
 - update the LEDs
 - update the displays
 */
-
 Peripherals* p = nullptr;
+Processor* proc = nullptr;
+
+Scheduler ts;
+//callbacks for the tasks
+void pollInputs()
+{
+  p->pollInputs();
+}
+void updateTriggers()
+{
+  p->updateTriggers();
+}
+void updateDisplays()
+{
+  p->updateDisplays();
+}
+void updatePixels()
+{
+  p->updatePixels();
+}
+
+Task t1(3 * TASK_MILLISECOND, TASK_FOREVER, &pollInputs, &ts, true);
+Task t2(10 * TASK_MILLISECOND, TASK_FOREVER, &updateTriggers, &ts, true);
+Task t3(42 * TASK_MILLISECOND, TASK_FOREVER, &updateDisplays, &ts, true);
+Task t4(42 * TASK_MILLISECOND, TASK_FOREVER, &updatePixels, &ts, true);
+
+
 void setup() 
 {
   Wire.setPins(SDA_PIN, SCL_PIN);
@@ -24,6 +50,9 @@ void setup()
   // set up WiFi for OTA updates
   Serial.begin(115200);
   Serial.println("Booting");
+
+  p = new Peripherals();
+  proc = new Processor(p);
 
   WiFi.mode(WIFI_STA);
   WiFi.begin(SSID, WIFI_PASSWORD);
@@ -64,18 +93,16 @@ void setup()
   Serial.println("WiFi connection successful");
   Serial.println(WiFi.localIP());
 
-  p = new Peripherals();
   Serial.println("Initialized peripherals");
   // init the hardware
   p->setAddress(WiFi.localIP().toString().c_str());
 
   Serial.println("Set Local IP address");
-
-  //I2CScan();
 }
 
 void loop() 
 {
   // put your main code here, to run repeatedly:
   ArduinoOTA.handle();
+  ts.execute();
 }

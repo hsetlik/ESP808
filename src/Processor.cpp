@@ -1,6 +1,12 @@
 #include "Processor.h"
 
-Processor::Processor()
+Processor::Processor(Peripherals* p) : peripherals(p)
+{
+
+}
+
+
+void updatePixels()
 {
 
 }

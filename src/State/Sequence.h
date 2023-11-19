@@ -3,7 +3,7 @@
 #include <vector>
 #define SEQ_LENGTH 64
 #define PAGE_LENGTH 16
-static const std::vector<std::string> trackNames = 
+static const std::vector<String> trackNames = 
 {
     "Kick1",
     "Kick2",
@@ -19,18 +19,18 @@ static const std::vector<std::string> trackNames =
 
 struct SequenceTrack
 {
-    std::string name;
+    String name;
     std::array<bool, SEQ_LENGTH> steps;
-    std::string encode(); //encodes this track as a string for saving/loading reasons
+    String encode(); //encodes this track as a string for saving/loading reasons
     SequenceTrack(); // default constructor
-    SequenceTrack(std::string data); // construct from a string encoding created by `encode()`
+    SequenceTrack(String data); // construct from a string encoding created by `encode()`
 };
 
 struct Sequence
 {
-    std::string name;
+    String name;
     std::vector<SequenceTrack> tracks;
     Sequence(); //default constructor
-    std::string encode();
-    void load(const std::string& data);
+    String encode();
+    void load(const String& data);
 };

@@ -16,7 +16,7 @@ linesInUse(0)
 
 }
 
-void Display::pushMessage(String& txt, bool highlight)
+void Display::pushMessage(const String& txt, bool highlight)
 {
     if(linesInUse < 6)
     {
@@ -37,6 +37,7 @@ void Display::setMessage(uint8_t idx, String& txt, bool highlight)
         lines[idx].active = true;
         lines[idx].text = txt;
         lines[idx].highlighted = highlight;
+        writeLine(idx);
     }
 }
 

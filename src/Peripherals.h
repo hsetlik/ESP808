@@ -7,14 +7,12 @@
 #include <NeoPixelBus.h>
 #include <Adafruit_SSD1306.h>
 #include "Hardware/Display.h"
+#include "Hardware/Encoders.h"
+#include "Hardware/SRTrigger.h"
 
-
-#define SCREEN_WIDTH 128 // OLED display width
-#define SCREEN_HEIGHT 64 // OLED display height
-#define OLED_RESET -1
-
-#define D1_ADDR 0x3C
-#define D2_ADDR 0x3D
+#if CONFIG_IDF_TARGET_ESP32S2 || CONFIG_IDF_TARGET_ESP32S3
+#define VSPI FSPI
+#endif
 
 class Peripherals
 {
@@ -36,6 +34,13 @@ class Peripherals
         // set the ESP32's current IP for uploading OTA
         void setAddress(const char* addr);
         void updateDisplays();
+        void pollInputs();
+
+        void updateTriggers()
+        {
+            trig.tick();
+        }
+
     private:
 
         Display sequenceDisplay;
@@ -45,4 +50,6 @@ class Peripherals
         SPIClass spi;
         std::array<byte, 8> potLevels;
         String deviceIP;
+        Encoders enc;
+        SRTrigger trig;
 };

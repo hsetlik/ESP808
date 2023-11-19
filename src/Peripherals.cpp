@@ -3,7 +3,8 @@
 Peripherals::Peripherals() :
 sequenceDisplay(D1_ADDR),
 trackDisplay(D2_ADDR),
-pixels(28, PIXEL_DATA)
+pixels(28, PIXEL_DATA),
+spi(VSPI)
 {
     spi.begin(SCK_PIN, MISO_PIN, MOSI_PIN, POT_CS);
     for(auto& val : potLevels)
@@ -69,10 +70,17 @@ void Peripherals::setAddress(const char* addr)
     deviceIP = "IP: " + (String)addr;
     Serial.println(deviceIP);
     sequenceDisplay.pushMessage(deviceIP);
+    trackDisplay.pushMessage("Connection Successful");
 }
 
 void Peripherals::updateDisplays()
 {
     sequenceDisplay.update();
     trackDisplay.update();
+}
+
+void Peripherals::pollInputs()
+{
+    enc.tick();
+    //TODO: check buttons here
 }

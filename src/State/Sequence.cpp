@@ -5,9 +5,9 @@ SequenceTrack::SequenceTrack()
     //any initialization business needs to be done here
 }
 
-std::string SequenceTrack::encode()
+String SequenceTrack::encode()
 {
-    std::string output = name + '-';
+    String output = name + '-';
     char c = 0x00;
     for(size_t i = 0; i < SEQ_LENGTH; i++)
     {
@@ -31,7 +31,7 @@ std::string SequenceTrack::encode()
     return output;
 }
 
-SequenceTrack::SequenceTrack(std::string data)
+SequenceTrack::SequenceTrack(String data)
 {
     name = "";
     size_t index = 0;
@@ -64,9 +64,9 @@ Sequence::Sequence()
     }
 }
 
-std::string Sequence::encode()
+String Sequence::encode()
 {
-    std::string output = name + '-';
+    String output = name + '-';
     for(auto& t : tracks)
     {
         output += t.encode() + '\n';
@@ -74,7 +74,7 @@ std::string Sequence::encode()
     return output;
 }
 
-void Sequence::load(const std::string& data)
+void Sequence::load(const String& data)
 {
     size_t index = 0;
     name = "";
@@ -85,10 +85,10 @@ void Sequence::load(const std::string& data)
         ++index;
     }
     ++index;
-    while(index < data.size())
+    while(index < data.length())
     {
         auto i2 = index;
-        std::string current = "";
+        String current = "";
         while (data[i2] != '\n')
         {
             current += data[i2];
