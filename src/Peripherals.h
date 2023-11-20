@@ -55,7 +55,7 @@ class Peripherals
         byte potLevels[8];
         String deviceIP;
         Encoders enc;
-        SRTrigger trig;
     public:
+        SRTrigger trig;
         Buttons buttons;
 };

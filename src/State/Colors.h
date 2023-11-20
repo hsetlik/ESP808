@@ -19,3 +19,12 @@ static const TrackColor trackColors[] =
     {"Dig2", HsbColor(0.353f, 0.78f, 0.065f)},
     {"Dig3", HsbColor(0.075f, 0.87f, 0.065f)}
 };
+
+const HsbColor cursorColor(0.489f, 0.24f, 0.95f);
+
+HsbColor withBrightness(const HsbColor& input, float b)
+{
+    HsbColor output(input);
+    output.B = b;
+    return output;
+}

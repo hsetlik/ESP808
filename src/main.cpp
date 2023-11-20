@@ -8,13 +8,6 @@
 #include "WifiCreds.h"
 
 
-/*
-tasks needed:
-- check inputs, run appropriate callbacks
-- update the trigger outputs if needed
-- update the LEDs
-- update the displays
-*/
 Peripherals* p = nullptr;
 Processor* proc = nullptr;
 
@@ -26,7 +19,7 @@ void pollInputs()
 }
 void updateTriggers()
 {
-  p->updateTriggers();
+  proc->tickTriggers();
 }
 void updateDisplays()
 {
@@ -34,7 +27,7 @@ void updateDisplays()
 }
 void updatePixels()
 {
-  p->updatePixels();
+  proc->updatePixels();
 }
 
 Task t1(3 * TASK_MILLISECOND, TASK_FOREVER, &pollInputs, &ts, true);
