@@ -4,7 +4,8 @@ Peripherals::Peripherals() :
 sequenceDisplay(D1_ADDR),
 trackDisplay(D2_ADDR),
 pixels(28, PIXEL_DATA),
-spi(VSPI)
+spi(VSPI),
+buttons(&spi)
 {
     spi.begin(SCK_PIN, MISO_PIN, MOSI_PIN, POT_CS);
     for(auto& val : potLevels)
@@ -33,6 +34,7 @@ void Peripherals::updatePots()
     // these are the command bytes we use to write to each pot
     const byte write1Command = 0x12;
     const byte write2Command = 0x11;
+    spi.beginTransaction(SPISettings(SPI_CLK, MSBFIRST, SPI_MODE0));
     //pull the chip select low
     digitalWrite(POT_CS, LOW);
     byte command = write1Command;
@@ -44,6 +46,7 @@ void Peripherals::updatePots()
     }
     // put the chip select back
     digitalWrite(POT_CS, HIGH);
+    spi.endTransaction();
 }
 
 
@@ -82,5 +85,5 @@ void Peripherals::updateDisplays()
 void Peripherals::pollInputs()
 {
     enc.tick();
-    //TODO: check buttons here
+    buttons.tick();
 }

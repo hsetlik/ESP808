@@ -1,12 +1,14 @@
 #include "Processor.h"
 
-Processor::Processor(Peripherals* p) : peripherals(p)
+Processor::Processor(Peripherals* p) : 
+peripherals(p),
+tempo(DEFAULT_TEMPO)
 {
 
 }
 
 
-void updatePixels()
+void Processor::updatePixels()
 {
 
 }

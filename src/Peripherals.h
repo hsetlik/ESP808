@@ -2,13 +2,12 @@
 #include "PinAssignments.h"
 #include <Arduino.h>
 #include <Wire.h>
-#include <SPI.h>
-#include <array>
 #include <NeoPixelBus.h>
 #include <Adafruit_SSD1306.h>
 #include "Hardware/Display.h"
 #include "Hardware/Encoders.h"
 #include "Hardware/SRTrigger.h"
+#include "Hardware/Buttons.h"
 
 #if CONFIG_IDF_TARGET_ESP32S2 || CONFIG_IDF_TARGET_ESP32S3
 #define VSPI FSPI
@@ -40,6 +39,11 @@ class Peripherals
         {
             trig.tick();
         }
+        //access to set our button callbacks
+        void setOnCick(uint8_t button, ButtonCallback func)
+        {
+            buttons.setOnClick(button, func);
+        }
 
     private:
 
@@ -48,8 +52,10 @@ class Peripherals
 
         NeoPixelBus<NeoGrbFeature, NeoWs2812xMethod> pixels;
         SPIClass spi;
-        std::array<byte, 8> potLevels;
+        byte potLevels[8];
         String deviceIP;
         Encoders enc;
         SRTrigger trig;
+    public:
+        Buttons buttons;
 };
