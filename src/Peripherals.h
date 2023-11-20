@@ -44,6 +44,11 @@ class Peripherals
         {
             buttons.setOnClick(button, func);
         }
+        // for the encoder callbacks
+        void setOnTurn(uint8_t idx, EncoderCallback func)
+        {
+            enc.encs[idx].callback = func;
+        }
 
     private:
 

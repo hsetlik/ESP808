@@ -25,18 +25,20 @@ void Encoder::tick()
 }
 //==================================================================
 Encoders::Encoders() :
-a(ENCA_L, ENCA_R, EncoderID::EncA),
-b(ENCB_L, ENCB_R, EncoderID::EncB),
-c(ENCC_L, ENCC_R, EncoderID::EncC),
-d(ENCD_L, ENCD_R, EncoderID::EncD)
+encs({
+Encoder(ENCA_L, ENCA_R, EncoderID::EncA),
+Encoder(ENCB_L, ENCB_R, EncoderID::EncB),
+Encoder(ENCC_L, ENCC_R, EncoderID::EncC),
+Encoder(ENCD_L, ENCD_R, EncoderID::EncD)
+})
 {
 
 }
 
 void Encoders::tick()
 {
-    a.tick();
-    b.tick();
-    c.tick();
-    d.tick();
+    for(uint8_t i = 0; i < 4; i++)
+    {
+        encs[i].tick();
+    }
 }

@@ -29,9 +29,5 @@ class Encoders
 public:
     Encoders();
     void tick();
-private:
-    Encoder a;
-    Encoder b;
-    Encoder c;
-    Encoder d;
+    Encoder encs[4];
 };

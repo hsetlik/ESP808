@@ -2,10 +2,11 @@
 
 Processor::Processor(Peripherals* p) : 
 peripherals(p),
-tempo(DEFAULT_TEMPO),
+currentTempo(DEFAULT_TEMPO),
 isPlaying(false),
 currentTrack(0),
 currentStep(0),
+highlightedStep(0),
 lastAdvanceMillis(0)
 {
 
@@ -15,7 +16,7 @@ void Processor::tickTriggers()
 {
     // check if it's time to advance
     auto now = millis();
-    if (now - lastAdvanceMillis >= (60000 / tempo) && isPlaying)
+    if (now - lastAdvanceMillis >= (60000 / currentTempo) && isPlaying)
     {
         lastAdvanceMillis = now;
         currentStep = (currentStep + 1) % SEQ_LENGTH;
@@ -90,3 +91,41 @@ void Processor::updateTrackPixels()
 
 }
 //===========================================================
+
+void Processor::toggleStep(uint8_t stepInPage)
+{
+    uint8_t page = (uint8_t)floorf((float)currentStep / 16.0f);
+    sequence.tracks[currentTrack].steps[(page * PAGE_LENGTH) + stepInPage] = !sequence.tracks[currentTrack].steps[(page * PAGE_LENGTH) + stepInPage];
+}
+void Processor::shiftTempo(bool up)
+{
+    if(up)
+        currentTempo = std::min<uint32_t>({currentTempo + 1, MAX_TEMPO});
+    else
+        currentTempo = std::max<uint32_t>({currentTempo - 1, MIN_TEMPO});
+}
+
+void Processor::shiftTrack(bool up)
+{
+    if(up)
+    {
+        currentTrack = (currentTrack + 1) % sequence.tracks.size();
+    }
+    else if(currentTrack == 0)
+    {
+        currentTrack = (uint8_t)sequence.tracks.size() - 1;
+    }
+    else
+        currentTrack -= 1;
+
+}
+
+void Processor::togglePlay()
+{
+    isPlaying = !isPlaying;
+}
+
+void Processor::assignDefaultCallbacks()
+{
+
+}
