@@ -110,13 +110,18 @@ void Processor::shiftTrack(bool up)
     if(up)
     {
         currentTrack = (currentTrack + 1) % sequence.tracks.size();
+        printOLED("Current Track Shifted up");
     }
     else if(currentTrack == 0)
     {
         currentTrack = (uint8_t)sequence.tracks.size() - 1;
+        printOLED("Current Track Shifted down");
     }
     else
+    {
         currentTrack -= 1;
+        printOLED("Current Track Shifted down");
+    }
 
 }
 
@@ -125,7 +130,25 @@ void Processor::togglePlay()
     isPlaying = !isPlaying;
 }
 
+//==============================================================
 void Processor::assignDefaultCallbacks()
 {
+    // do encoder callbacks first
+    peripherals->setOnTurn(0, [this](bool dir){
+        this->shiftTempo(dir);
+        this->printOLED("Tempo Shifted");
+        });
+    peripherals->setOnTurn(1, [this](bool dir){this->shiftTrack(dir);});
+    // keypad buttons
+    for(uint8_t i = 0; i < PAGE_LENGTH; i++)
+    {
+        peripherals->setOnCick(i, [this, i](){this->toggleStep(i);});
+    }
+}
 
+//==============================================================
+
+void Processor::printOLED(const String& str, bool highlight)
+{
+    peripherals->sequenceDisplay.pushMessage(str, highlight);
 }

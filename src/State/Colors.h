@@ -22,7 +22,7 @@ static const TrackColor trackColors[] =
 
 const HsbColor cursorColor(0.489f, 0.24f, 0.95f);
 
-HsbColor withBrightness(const HsbColor& input, float b)
+ static HsbColor withBrightness(const HsbColor& input, float b)
 {
     HsbColor output(input);
     output.B = b;

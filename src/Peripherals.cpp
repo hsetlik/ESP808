@@ -85,5 +85,6 @@ void Peripherals::updateDisplays()
 void Peripherals::pollInputs()
 {
     enc.tick();
-    buttons.tick();
+    //TODO: something is stalling here...
+    //buttons.tick();
 }

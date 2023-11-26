@@ -51,12 +51,12 @@ class Peripherals
         }
 
     private:
-
+        SPIClass spi;
+    public:
         Display sequenceDisplay;
         Display trackDisplay;
-
+    private:
         NeoPixelBus<NeoGrbFeature, NeoWs2812xMethod> pixels;
-        SPIClass spi;
         byte potLevels[8];
         String deviceIP;
         Encoders enc;

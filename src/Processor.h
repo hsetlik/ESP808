@@ -31,7 +31,10 @@ private:
     unsigned long lastAdvanceMillis;
     // helper to assign the default callbacks in the constructor and to switch back to the defaults when switching out of alternate modes
     void assignDefaultCallbacks();
+    // helper to display things on the GUI display
+    void printOLED(const String& str, bool highlight=false);
     // these are called from the lambdas we pass in the callback assignment functions
+public:
     void toggleStep(uint8_t stepInPage);
     void togglePlay();
     void shiftTempo(bool up);

@@ -4,15 +4,15 @@ bool ButtonStateData::get(uint8_t idx)
 {
     if (idx < 8)
     {
-        return data[0] & (1 << idx);
+        return !(data[0] & (1 << idx)); // all these return values get inverted because we're using pull-up resistors for all the buttons (signal is high when not pressed)
     }
     else if (idx < 16)
     {
-        return data[1] & (1 << (idx - 8));
+        return !(data[1] & (1 << (idx - 8)));
     }
     else
     {
-        return data[2] & (1 << (idx - 16));
+        return !(data[2] & (1 << (idx - 16)));
     }
 }
 Buttons::Buttons(SPIClass* s) : spi(s)
